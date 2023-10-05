@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html dir='ltr' lang='en'>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>bank_account</title>
+        <style>
+            container { 
+                height: 200px;
+                position: relative;
+                border: 3px solid blue; 
+            }
+            .center {
+                margin: 0;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+            }
+            button {
+                background-color: blue; 
+                color: white;
+                padding: 10px 24px;
+                border: 2px solid gray;
+                border-radius: 15px;
+                text-align: center;
+                font-size: 13px;
+                width: 140px;
+                height: 50px;
+            }
+        </style>
+        <script type = "text/javascript">
+            let saldo = 0;
+            let array = [];
+            let dt = new Date();
+            function tambahSaldo() {
+                let tambah = window.prompt("Masukkan jumlah saldo yang ingin ditambahkan:", );
+                if(tambah == null) {
+                    return;
+                } else if(isNaN(tambah) == true ) {
+                    alert("Masukkan nilai saldo dengan angka!!");
+                    saldo = parseInt(saldo);
+                } else if(parseInt(tambah) == 0) {
+                    alert("Anda belum menambahkan saldo");
+                    saldo = parseInt(saldo);
+                } else {
+                    array.push(`Menambahkan saldo senilai ${tambah} rupiah | ${dt.toLocaleDateString('en-GB')} |`);
+                    saldo = parseInt(saldo) + parseInt(tambah);
+                    document.getElementById("para").innerHTML = `Saldo anda telah ditambahkan ${tambah} rupiah.`;
+                }      
+            }
+
+            function kurangiSaldo() {
+                let kurang = window.prompt("Masukkan jumlah saldo yang ingin dikurangi:", "")    
+                if(kurang == null) {
+                    return;
+                } else if(isNaN(kurang) == true ) {
+                    alert("Masukkan nilai saldo dengan angka!!");
+                    saldo = parseInt(saldo);
+                } else if(parseInt(kurang) == 0) {
+                    alert("Anda belum mengurangi saldo");
+                    saldo = parseInt(saldo); 
+                } else if(parseInt(kurang) > parseInt(saldo)) {
+                    saldo = parseInt(saldo);
+                    document.getElementById("para").innerHTML = `Mohon maaf saldo anda tidak mencukupi.`;
+                } else {
+                    array.push(`Mengurangi saldo senilai ${kurang} rupiah | ${dt.toLocaleDateString('en-GB')} |`);
+                    saldo = parseInt(saldo) - parseInt(kurang);
+                    document.getElementById("para").innerHTML = `Saldo anda telah dikurangi ${kurang} rupiah.`;
+                }     
+            }
+
+            function cekSaldo() {
+                saldo = parseInt(saldo);
+                document.getElementById("para").innerHTML = `Saldo anda saat ini yaitu ${saldo} rupiah.`;
+            }
+            
+            function riwayatTrans() {
+                for(i = 0; i < array.length; i++) {
+                    document.getElementById("para2").innerHTML = array.join(' ' + "<br>");
+                }
+            }
+
+        </script>
+        
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="center">
+                <h1 style="text-align: center;"> Transaksi </h1>
+                <button type="button" onclick="tambahSaldo()" id="1">Tambah Saldo</button>
+                <button type="button" onclick="kurangiSaldo()" id="2">Kurangi Saldo</button>
+                <button type="button" onclick="cekSaldo()" id="3">Cek Saldo</button> 
+                <p id = "para" style="text-align: center; font-size: 20px; color: red;"></p>
+                <br><br><h2 style="text-align: center;">Riwayat Transaksi:
+                    <button type="button" onclick="riwayatTrans()" id="4">Tampilkan Riwayat</button> 
+                </h2>
+                <p id = "para2" style="text-align: center; font-size: 20px; color: red;"></p>
+            </div>
+        </div>
+        
+    </body>
+</html>
