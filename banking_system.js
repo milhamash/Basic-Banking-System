@@ -18,7 +18,7 @@ class Human {
     static #isHidingArea = true;
 }
 
-class rekeningBank extends Human{        
+class rekeningBank extends Human{                                                                           //Class bankAccount
     constructor(nama, alamat, kode_pin, noRekening, saldo) {
         super(nama, alamat, kode_pin)
         this.noRekening = noRekening;
@@ -28,11 +28,11 @@ class rekeningBank extends Human{
         super.introduce();
         console.log(`No. Rekening anda adalah ${this.noRekening} dengan saldo awal Rp${this.saldo}`)
     }
-    setor(jumlah) {
+    setor(jumlah) {                                                                                         //Metode deposit(amount)
         this.saldo += jumlah;
         setTimeout(() => {console.log(`Saldo yang anda setorkan berjumlah Rp${jumlah}`)}, 500);
     }
-    ditarik(jumlah) {
+    ditarik(jumlah) {                                                                                       //Metode withdraw(amount)
         if (jumlah <= this.saldo) {
             this.saldo -= jumlah;
             setTimeout(() => {console.log(`Saldo yang anda tarik berjumlah Rp${jumlah}`)}, 500);
@@ -42,12 +42,14 @@ class rekeningBank extends Human{
         }
     }
     displaySaldo() {
-        setTimeout(() => {console.log(`Jumlah saldo rekening anda adalah Rp${this.saldo}`)}, 1000);
+        setTimeout(() => {console.log(`Jumlah saldo rekening anda adalah Rp${this.saldo}`)}, 500);
     }
 }
 
 let rekening = new rekeningBank('Ilham', 'Bandung', '123456', 'SB-123', 100000);
 rekening.introduce();
-rekening.setor(500000);
-rekening.ditarik(650000);
+rekening.setor(150000);
+rekening.ditarik(200000);
+rekening.displaySaldo();
+rekening.ditarik(60000);
 rekening.displaySaldo();
