@@ -57,3 +57,9 @@ SELECT nama_nasabah, alamat_nasabah FROM nasabah;
 SELECT * FROM transaksi ORDER BY id_akun ASC;
 
 SELECT count(*) FROM transaksi;
+
+DELETE FROM transaksi WHERE nilai_transaksi = 200000;
+SELECT * FROM transaksi;
+
+SELECT nasabah.id_nasabah, nasabah.nama_nasabah, telp_nasabah, akun.no_akun, akun.pin_akun 
+FROM nasabah JOIN akun ON nasabah.id_nasabah = akun.id_nasabah;
