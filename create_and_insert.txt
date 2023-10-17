@@ -1,0 +1,41 @@
+//Program di dbdiagram.io
+Table nasabah {
+  id_nasabah integer [primary key]
+  nama_nasabah varchar
+  telp_nasabah integer
+  email_nasabah varchar
+  alamat_nasabah varchar
+  created_at timestamp
+  created_by varchar
+  updated_at timestamp
+  updated_by varchar 
+}
+
+Table rekening {
+  id_rekening integer [primary key]
+  no_rekening integer
+  saldo_rekening integer
+  pin_rekening integer
+  id_nasabah integer
+  created_at timestamp
+  created_by varchar
+  updated_at timestamp
+  updated_by varchar 
+}
+
+Table transaksi {
+  id_transaksi integer [primary key]
+  jenis_transaksi varchar
+  nilai_transaksi integer
+  waktu_transaksi timestamp
+  id_nasabah integer
+  id_rekening integer
+  created_at timestamp
+  created_by varchar
+  updated_at timestamp
+  updated_by varchar 
+}
+
+Ref: nasabah.id_nasabah <> rekening.id_rekening
+Ref: rekening.id_rekening < transaksi.id_transaksi
+Ref: transaksi.id_transaksi > nasabah.id_nasabah 
